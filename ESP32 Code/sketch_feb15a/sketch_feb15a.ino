@@ -24,8 +24,8 @@ void setup() {
         delay(1000);
     }
     Serial.println("\nWi-Fi Conectado!");
-    Serial.print("IP do ESP32: ");
-    Serial.println(WiFi.localIP());
+    Serial.print("IP do ESP32: "); 
+    Serial.println(WiFi.localIP());//I´do ESP
 
     // Definição da API JSON com CORS
     server.on("/dados", HTTP_GET, [](AsyncWebServerRequest *request) {
