@@ -1,34 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoramento ESP32</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard ESP32 - Fator de Potência</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/contato.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="CSS/contato.js"></script>
 </head>
 <body class="bg-light">
-
-    <div class="container text-center mt-5">
-        <h1 class="mb-4">Monitoramento do ESP32</h1>
-
-        <div class="card mx-auto shadow-lg p-2" style="max-width: 400px;">
-            <h4 class="mb-5">Dados em Tempo Real</h4>
-            
-            <p><strong>Tensão:</strong> <span id="tensao" class="text-primary">--</span> VAC</p>
-            <p><strong>Corrente:</strong> <span id="corrente" class="text-danger">--</span> A</p>
-            <p><strong>Fator de Potência:</strong> <span id="fp" class="text-success">--</span></p>
-            <p><strong>Potência (W):</strong> <span id="Watts" class="text-success">--</span>W</p>
-            <p><strong>Potência (KVA):</strong> <span id="KVA" class="text-success">--</span>KVA</p>
-            <p><strong>Potência (KVAr):</strong> <span id="KVAr" class="text-success">--</span>KVAr</p>
-            <p><strong>Reatância (Ohm):</strong> <span id="Xc" class="text-success">--</span>Ω</p>
-            <p><strong>Correção Capacitiva (Farad):</strong> <span id="Capacitancia" class="text-success">--</span>uF</p>
-
-            <button class="btn btn-primary mt-3" onclick="carregarDados()">Atualizar Agora</button>
-        </div>
-    </div>
     <script src="script.js"></script>
+  <div class="container my-5">
+    <h1 class="text-center mb-4">📊 Dashboard de Monitoramento ESP32</h1>
+
+    <!-- Cartão de dados -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-6">
+        <div class="card shadow p-4">
+          <h4 class="text-center mb-3">📡 Dados em Tempo Real</h4>
+          <p><strong>Tensão:</strong> <span id="tensao" class="text-primary">--</span> VAC</p>
+          <p><strong>Corrente:</strong> <span id="corrente" class="text-danger">--</span> A</p>
+          <p><strong>Fator de Potência:</strong> <span id="fp" class="text-success">--</span></p>
+          <p><strong>Potência (W):</strong> <span id="Watts">--</span> W</p>
+          <p><strong>Potência (KVA):</strong> <span id="KVA">--</span> KVA</p>
+          <p><strong>Potência (KVAr):</strong> <span id="KVAr">--</span> KVAr</p>
+          <p><strong>Reatância:</strong> <span id="Xc">--</span> Ω</p>
+          <p><strong>Capacitância:</strong> <span id="Capacitancia">--</span> μF</p>
+          <div class="text-center">
+            <button class="btn btn-primary mt-3" onclick="carregarDados()">🔄 Atualizar Agora</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+ 
+
+  <div class="contato fechado" id="contatoNA">
+    <div class="linha"></div>
+  </div>
+  <div class="titulo">Contato NA</div>
+
+  <div class="contato aberto" id="contatoNF">
+    <div class="linha"></div>
+  </div>
+  <div class="titulo">Contato NF</div>
+
+  <br>
+  <button onclick="alternarContato()">🔄 Alternar Contatos</button>
+</style>
+
+
+
 </body>
 </html>
+
+
+
+
+

@@ -1,0 +1,53 @@
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .contato {
+      display: inline-block;
+      margin: 40px;
+      position: relative;
+      width: 120px;
+      height: 80px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+    }
+
+    .linha {
+        position: absolute;
+        height: 60px;          
+        width: 4px;
+        background-color: #333;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: 0.4s ease;
+      }
+      
+    .fechado .linha {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      
+      .aberto .linha {
+        transform: translateX(-50%) rotate(30deg);
+      }
+      
+
+    .titulo {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+
+
+
