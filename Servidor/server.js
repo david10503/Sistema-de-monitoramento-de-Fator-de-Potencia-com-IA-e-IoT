@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 
 
 
+
 // Configuração do MySQL
 const db = mysql.createConnection({
     host: "localhost", // Ou o IP do seu servidor MySQL
@@ -29,48 +30,6 @@ db.connect((err) => {
     } else {
         console.log("Conectado ao MySQL");
     }
-});
-
-
-
-
-// Inicia o servidor
-app.listen(5000, port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-});
-
-// Rota para análise dos piores momentos de fator de potência
-app.get("/analise", (req, res) => {
-    const sql = `
-        SELECT 
-            DAYNAME(data_hora) AS dia_semana,
-            HOUR(data_hora) AS hora,
-            COUNT(*) AS total_registros,
-            AVG(fp) AS media_fp,
-            SUM(fp < 0.9) AS ocorrencias_fp_baixo
-        FROM medidas
-        GROUP BY dia_semana, hora
-        ORDER BY media_fp ASC
-        LIMIT 10;
-    `;
-
-    db.query(sql, (err, resultados) => {
-        if (err) {
-            console.error("Erro na análise:", err);
-            return res.status(500).send("Erro ao realizar análise");
-        }
-
-        // Mapeia os resultados para uma resposta mais legível
-        const analise = resultados.map(row => ({
-            dia: row.dia_semana,
-            hora: `${row.hora}:00`,
-            media_fp: parseFloat(row.media_fp).toFixed(2),
-            registros: row.total_registros,
-            abaixo_de_0_9: row.ocorrencias_fp_baixo
-        }));
-
-        res.status(200).json({ analise });
-    });
 });
 
 

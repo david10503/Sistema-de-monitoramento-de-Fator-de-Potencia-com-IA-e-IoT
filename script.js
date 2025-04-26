@@ -1,6 +1,9 @@
-async function carregarDados() {
+export async function carregarDados() {
+    
+    let valores;
+    
     try {
-        let response = await fetch("http://192.168.15.3/dados"); // Substitua pelo IP real do ESP32
+        let response = await fetch("http://192.168.15.4/dados"); // Substitua pelo IP real do ESP32
         let data = await response.json();
 
         let potenciaAtiva = calculaPotenciaAtiva(data.tensao, data.corrente);
@@ -33,7 +36,7 @@ async function carregarDados() {
         }
         
         // Exemplo de como instanciar, assumindo que você já tenha essas variáveis:
-        const valores = new Valores(data, potenciaAtiva, potenciaAparente, potenciaReativa, reatanciaCapacitiva, capacitancia);
+         valores = new Valores(data, potenciaAtiva, potenciaAparente, potenciaReativa, reatanciaCapacitiva, capacitancia);
         
         salvarDados(valores);
         
@@ -49,6 +52,8 @@ async function carregarDados() {
     } catch (error) {
         console.error("Erro ao buscar os dados:", error);
     }
+
+    return valores;
     
 }
 
@@ -114,7 +119,7 @@ function calculaCapacitancia(reatanciaCapacitiva) {
 // Função para acionar/desligar a saída do ESP32
 async function acionarSaida(estado) {
     try {
-        await fetch(`http://192.168.15.3/acionar?estado=${estado}`);
+        await fetch(`http://192.168.15.12/acionar?estado=${estado}`);
         console.log(`Saída ${estado == 1 ? "LIGADA" : "DESLIGADA"}`);
     } catch (error) {
         console.error("Erro ao acionar saída:", error);
@@ -123,9 +128,3 @@ async function acionarSaida(estado) {
 
 // Atualiza os dados a cada 2 segundos
 setInterval(carregarDados, 10000);
-
-
-
-
-
-

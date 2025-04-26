@@ -14,18 +14,20 @@
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <script src="script.js"></script>
-  <script src="CHARTS/charts.js"></script>
+  <script type="module" src="script.js"></script>
+
+
 </head>
 <body class="bg-light">
 
-  <div class="container my-5">
+  <div class="container mb-5">
     <h1 class="text-center mb-4">📊 Dashboard de Monitoramento ESP32</h1>
 
     <!-- Cartão de Dados -->
-    <div class="row justify-content-center mb-4">
-      <div class="col-md-6">
-        <div class="card shadow p-4">
+    <div class="row-mb-5">
+      <div class="col-md-4">
+        
+        <div class="card shadow p-3">
           <h4 class="text-center mb-3">📡 Dados em Tempo Real</h4>
           <p><strong>Tensão:</strong> <span id="tensao" class="text-primary">--</span> VAC</p>
           <p><strong>Corrente:</strong> <span id="corrente" class="text-danger">--</span> A</p>
@@ -36,13 +38,21 @@
           <p><strong>Reatância:</strong> <span id="Xc">--</span> Ω</p>
           <p><strong>Capacitância:</strong> <span id="Capacitancia">--</span> μF</p>
           <div class="text-center">
-            <button class="btn btn-primary mt-3" onclick="carregarDados()">🔄 Atualizar Agora</button>
+           
           </div>
+        </div>
+        <div class="card shadow p-3" >
+          <canvas id="grafico_Setores" width="500" height="400"></canvas>
+          <script type="module" src="CHARTS/grafico_Setores.js"></script>
         </div>
       </div>
     </div>
 
-   
+    <h2>Consumo de Energia (kWh)</h2>
+    <canvas id="graficoLinha" width="600" height="300"></canvas>
+    <script type="module" src="CHARTS/grafico_linha.js"></script>   
+
+
 
     <!-- Contatos -->
     <div class="text-center my-4">
@@ -55,9 +65,14 @@
       <button class="btn btn-secondary mt-3" onclick="alternarContato()">🔄 Alternar Contatos</button>
     </div>
   </div>
+  
 
-  <!-- JS personalizado -->
-  <script src="js/script.js"></script>
-  <script src="js/chart.js"></script>
+  
+
+
+
+
+  
+
 </body>
 </html>
