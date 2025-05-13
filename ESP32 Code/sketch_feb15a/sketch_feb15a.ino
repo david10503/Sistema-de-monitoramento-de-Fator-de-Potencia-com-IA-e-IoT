@@ -5,6 +5,9 @@
 const char* ssid = "Siv-2G";
 const char* password = "vM3kC47Hx9";
 
+int cruzamentos = 0;
+int valorAnterior = 2048;
+
 // Inicializa o servidor
 AsyncWebServer server(80);
 
@@ -15,7 +18,8 @@ float getRandomValue(float minVal, float maxVal) {
 
 void setup() {
     Serial.begin(115200);
-
+    pinMode(A0, INPUT);
+   
     // Conectando ao Wi-Fi
     WiFi.begin(ssid, password);
     Serial.print("Conectando ao Wi-Fi");
@@ -63,4 +67,16 @@ void setup() {
 
 void loop() {
     // Nada no loop, apenas esperando requisições
-}
+    int leitura = analogRead(A0);
+    //Serialprintln(leitura);
+
+  // Detecta cruzamento por zero (subida)
+  if (valorAnterior < 2048 && leitura >= 2048) {
+    cruzamentos++;
+    Serial.print("Zero crossing detectado. Total: ");
+    Serial.println(cruzamentos);
+  }
+
+  valorAnterior = leitura;
+  delay(1); // Taxa de amostragem ~1kHz (ajustável)
+    }

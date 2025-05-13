@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - ESP32</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #1e1e2f;
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: #2a2a3d;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .card h3 {
+      margin-bottom: 1rem;
+      color: #00d1ff;
+    }
+
+    .data-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .data-item {
+      background: #373750;
+      padding: 1rem;
+      flex: 1 1 45%;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .data-item span {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #50fa7b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Dados em Tempo Real -->
+    <div class="card">
+      <h3>📡 Dados em Tempo Real</h3>
+      <div class="data-box">
+        <div class="data-item">Tensão <span id="tensao">-- V</span></div>
+        <div class="data-item">Corrente <span id="corrente">-- A</span></div>
+        <div class="data-item">FP <span id="fp">--</span></div>
+        <div class="data-item">Potência Ativa <span id="Watts">-- W</span></div>
+        <div class="data-item">Potência Aparente <span id="KVA">-- KVA</span></div>
+        <div class="data-item">Potência Reativa <span id="KVAr">-- KVAr</span></div>
+        <div class="data-item">Reatância <span id="Xc">-- Ω</span></div>
+        <div class="data-item">Capacitância <span id="Capacitancia">-- μF</span></div>
+        <div class="data-item">Horário da Moda FP <span id="moda_horario">--:--</span></div>
+        <div class="data-item">Média FP <span id="media_fp">--</span></div>
+      
+      </div>
+    </div>
+
+    <!-- Gráfico de Barras -->
+    <div class="card">
+      <h3>⚡ Consumo por Setor</h3>
+      <canvas id="graficoBarras"></canvas>
+    </div>
+
+    <!-- Gráfico de Linha -->
+    <div class="card">
+      <h3>📈 Consumo ao Longo do Tempo</h3>
+      <canvas id="graficoLinha"></canvas>
+    </div>
+
+    <!-- Gráfico de Pizza -->
+    <div class="card">
+      <h3>🔧 Distribuição dos Tipos de Potência</h3>
+      <canvas id="graficoPizza"></canvas>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="script.js" defer></script>
+  <script type="module" src="/Projeto TCC/CHARTS/graficos.js" defer></script>
+
+</body>
+</html>
