@@ -8,8 +8,10 @@
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <script type="module" src="AlgoritmoGen.js"></script>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
 
   <style>
     body {
@@ -80,33 +82,36 @@
         <div class="data-item">Capacitância <span id="Capacitancia">-- μF</span></div>
         <div class="data-item">Horário da Moda FP <span id="moda_horario">--:--</span></div>
         <div class="data-item">Média FP <span id="media_fp">--</span></div>
+       
+        <div class="data-item">Solucação<span id="melhor_combinacao">--</span></div>
+       
       
       </div>
-    </div>
-
-    <!-- Gráfico de Barras -->
-    <div class="card">
-      <h3>⚡ Consumo por Setor</h3>
-      <canvas id="graficoBarras"></canvas>
     </div>
 
     <!-- Gráfico de Linha -->
     <div class="card">
       <h3>📈 Consumo ao Longo do Tempo</h3>
       <canvas id="graficoLinha"></canvas>
+      <script   src="/CHARTS/graficos.js" width="400" height="100"></script>
+
+      
     </div>
 
-    <!-- Gráfico de Pizza -->
-    <div class="card">
-      <h3>🔧 Distribuição dos Tipos de Potência</h3>
-      <canvas id="graficoPizza"></canvas>
-    </div>
+    
 
+      
+    
   </div>
 
   <!-- Scripts -->
   <script type="module" src="script.js" defer></script>
-  <script type="module" src="/Projeto TCC/CHARTS/graficos.js" defer></script>
+  
 
+ 
+  
+
+
+  
 </body>
 </html>

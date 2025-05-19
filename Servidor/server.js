@@ -69,8 +69,8 @@ app.get("/analise", (req, res) => {
         FROM (
             SELECT * FROM medidas
             ORDER BY id DESC
-            LIMIT 8
-        ) AS ultimas_8;
+            LIMIT 30
+        ) AS ultimas_30;
     `;
 
     const sqlModaHorario = `
