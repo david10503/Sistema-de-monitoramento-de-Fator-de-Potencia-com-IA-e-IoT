@@ -9,28 +9,26 @@ function gerarCombinacoes(valores) {
         for (let j = 0; j < n; j++) {
             if (i & (1 << j)) combinacao.push(valores[j]);
         }
-        combinacoes.push(combinacao);
+        combinacoes.push({ combinacao, bin: i.toString(2).padStart(n, "0") });
     }
 
     return combinacoes;
 }
 
-export function mostraResultado(alvo) {
+export function encontrarMelhorCombinacao(alvo) {
     const combinacoes = gerarCombinacoes(capacitores);
 
     let melhor = null;
     let erroMin = Infinity;
 
-    for (let c of combinacoes) {
-        let soma = c.reduce((a, b) => a + b, 0);
-        let erro = Math.abs(soma - alvo);
+    for (let { combinacao, bin } of combinacoes) {
+        const soma = combinacao.reduce((a, b) => a + b, 0);
+        const erro = Math.abs(soma - alvo);
         if (erro < erroMin) {
             erroMin = erro;
-            melhor = c;
+            melhor = { combinacao, bin, soma };
         }
     }
 
-    console.log("Melhor combinação de capacitores:", melhor, "→", melhor.reduce((a, b) => a + b, 0).toFixed(2), "kVAr");
-
-    document.getElementById("melhor_combinacao").innerText = `${melhor.join(" + ")} = ${melhor.reduce((a, b) => a + b, 0).toFixed(2)} kVAr`;
+    return melhor;
 }

@@ -1,10 +1,11 @@
-import { mostraResultado } from "./AlgoritmoGen.js";
+
+import { encontrarMelhorCombinacao } from "./AlgoritmoGen.js";
 
 async function carregarDados() {
     let valores;
 
     try {
-        let response = await fetch("http://192.168.15.12/dados");
+        let response = await fetch("http://192.168.15.11/dados");
         let data = await response.json();
 
         let potenciaAtiva = calculaPotenciaAtiva(data.tensao, data.corrente);
@@ -38,6 +39,7 @@ async function carregarDados() {
         valores = new Valores(data, potenciaAtiva, potenciaAparente, potenciaReativa, reatanciaCapacitiva, capacitancia);
 
         await salvarDados(valores);
+        await calcularCorrecao();
 
         // Chama o algoritmo genético com valor de kVAr
         mostraResultado(parseFloat(valores.kvar));
@@ -71,6 +73,12 @@ async function salvarDados(valores) {
         console.error("Erro ao salvar os dados:", error);
     }
 }
+
+
+
+
+
+
 
 function calculaPotenciaAtiva(tensao, corrente) {
     return (tensao * corrente).toFixed(2);
@@ -108,4 +116,4 @@ async function acionarSaida(estado) {
     }
 }
 
-setInterval(carregarDados, 10000);
+setInterval(carregarDados, 5000);
