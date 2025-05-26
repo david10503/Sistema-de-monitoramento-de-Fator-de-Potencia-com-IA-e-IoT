@@ -5,7 +5,7 @@ async function carregarDados() {
     let valores;
 
     try {
-        let response = await fetch("http://192.168.15.11/dados");
+        let response = await fetch("http://192.168.3.145/dados");
         let data = await response.json();
 
         let potenciaAtiva = calculaPotenciaAtiva(data.tensao, data.corrente);
