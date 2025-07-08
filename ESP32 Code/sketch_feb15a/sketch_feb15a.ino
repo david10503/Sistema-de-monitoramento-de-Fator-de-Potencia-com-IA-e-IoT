@@ -2,8 +2,8 @@
 #include <ESPAsyncWebServer.h>
 
 // CONFIGURAÇÃO DA REDE WI-FI
-const char* ssid = "Siv-2G";
-const char* password = "vM3kC47Hx9";
+const char* ssid = "SSID";
+const char* password = "SENHA";
 
 
 // Inicializa o servidor
